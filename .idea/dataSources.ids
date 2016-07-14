@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - db_votemanage@localhost" uuid="b21ce298-6f20-48f4-8db3-8b92964a0611">
+    <database-info product="MySQL" version="5.7.10-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="db_votemanage"/>
+    <table name="tb_channel" schema="" catalog="db_votemanage" type="TABLE">
+      <column name="channelID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="channelName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="channelID"/>
+      <exported-key name="tb_vote_ibfk_1" table="tb_vote" schema="" catalog="db_votemanage" columns="channelID"/>
+    </table>
+    <table name="tb_vote" schema="" catalog="db_votemanage" type="TABLE">
+      <column name="voteID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="voteName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="channelID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="voteID"/>
+      <foreign-key name="tb_vote_ibfk_1" columns="channelID" ref-table="tb_channel" ref-schema="" ref-catalog="db_votemanage" ref-columns="channelID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="tb_voteoption_ibfk_1" table="tb_voteoption" schema="" catalog="db_votemanage" columns="voteID"/>
+    </table>
+    <table name="tb_voteoption" schema="" catalog="db_votemanage" type="TABLE">
+      <column name="voteOptionID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="voteID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="voteOptionName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ticketNum" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="voteOptionID"/>
+      <foreign-key name="tb_voteoption_ibfk_1" columns="voteID" ref-table="tb_vote" ref-schema="" ref-catalog="db_votemanage" ref-columns="voteID" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+  </data-source>
+</component>
